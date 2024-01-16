@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<?import javafx.geometry.Insets?>-->
+<!--<?import javafx.scene.control.Label?>-->
+<!--<?import javafx.scene.layout.VBox?>-->
+<!--<?import javafx.scene.control.Button?>-->
+<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
+<!--      fx:controller="com.example.aip3tictactoe.MainController">-->
+<!--    <padding>-->
+<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
+<!--    </padding>-->
+<!--    <Label fx:id="welcomeText"/>-->
+<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
+<!--</VBox>-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="519.0" style="-fx-border-color: #435585; -fx-border-width: 5px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.aip3tictactoe.HelloController">
+<children>
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="94.0" layoutY="110.0" prefHeight="127.0" prefWidth="331.0" text="Tic Tac Toe Game" textAlignment="CENTER" textFill="#435585" textOverrun="CLIP" underline="true">
+        <font>
+            <Font name="Times New Roman Bold" size="35.0" />
+        </font>
+         <effect>
+            <Glow />
+         </effect>
+    </Label>
+
+    <Button layoutX="146.0" layoutY="325.0" mnemonicParsing="false" onAction="#playWithUnbeatableComputer" prefHeight="46.0" style="-fx-background-color: #EEE7DA; -fx-background-radius: 10px; -fx-border-color: #A87C7C; -fx-border-width: 2px;" text="Start The Game!" textFill="#435585">
+        <font>
+            <Font name="Times New Roman Bold" size="26.0" />
+        </font>
+    </Button>
+</children>
+</AnchorPane>

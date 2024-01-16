@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="519.0" style="-fx-border-color: #435585; -fx-border-width: 5Px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.aip3tictactoe.TicTacToeController">
+    <children>
+        <Label fx:id="roundLabel" alignment="CENTER" layoutX="150.0" layoutY="50.0" prefHeight="48.0" prefWidth="220.0" text="Round: 1" textAlignment="CENTER" textFill="#435585">
+            <font>
+                <Font name="Times New Roman Bold" size="30.0" />
+            </font>
+        </Label>
+        <AnchorPane fx:id="pane" layoutX="101.0" layoutY="114.0" maxHeight="450.0" maxWidth="533.0" minHeight="327.0" minWidth="318.0" prefHeight="327.0" prefWidth="318.0">
+            <children>
+                <Button fx:id="button1" alignment="CENTER" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button1OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-border-color: #A87C7C; -fx-border-width: 2px; -fx-background-color: #EEE7DA;" textFill="#080808" wrapText="true">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button2" alignment="CENTER" layoutX="108.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button2OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button3" alignment="CENTER" layoutX="216.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button3OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button4" alignment="CENTER" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button4OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button5" alignment="CENTER" layoutX="108.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button5OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px; -fx-background-radius: 5px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button6" alignment="CENTER" layoutX="216.0" layoutY="111.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button6OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-background-radius: 5px; -fx-border-color: #A87C7C; -fx-border-width: 2px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button7" alignment="CENTER" layoutY="223.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button7OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button8" alignment="CENTER" layoutX="108.0" layoutY="223.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button8OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+                <Button fx:id="button9" alignment="CENTER" layoutX="216.0" layoutY="223.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#button9OnClick" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #EEE7DA; -fx-border-color: #A87C7C; -fx-border-width: 2px; -fx-background-radius: 5px;">
+                    <font>
+                        <Font name="Times New Roman Bold" size="44.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Button layoutX="170.0" layoutY="516.0" mnemonicParsing="false" onAction="#backButtonOnClick" style="-fx-background-color: #EEE7DA; -fx-background-radius: 2px; -fx-border-color: #EEE7DA4; -fx-border-width: 2px;" text="Back" textFill="#435585">
+            <font>
+                <Font name="Times New Roman Bold" size="18.0" />
+            </font>
+        </Button>
+        <Button fx:id="playAgain" layoutX="252.0" layoutY="516.0" mnemonicParsing="false" onAction="#playAgain" style="-fx-background-radius: 2px; -fx-background-color: #EEE7DA;" text="Play Again" textFill="#435585">
+            <font>
+                <Font name="Times New Roman Bold" size="18.0" />
+            </font>
+        </Button>
+      <Label layoutX="101.0" layoutY="472.0" text="Player O:" textFill="#435585">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerOLabel" layoutX="176.0" layoutY="472.0" text="0" textFill="#435585">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="224.0" layoutY="472.0" text="Player X: " textFill="#435585">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="playerXLabel" layoutX="302.0" layoutY="472.0" text="0" textFill="#435585">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="347.0" layoutY="472.0" text="Tie:" textFill="#435585">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="tieLabel" layoutX="389.0" layoutY="472.0" text="0" textFill="#435585">
+         <font>
+            <Font name="Times New Roman Bold" size="16.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
