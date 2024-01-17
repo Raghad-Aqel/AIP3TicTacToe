@@ -103,8 +103,6 @@ public class TicTacToeController implements Initializable{
     }
 
 
-
-
     public void playAgain(ActionEvent event) {
         i = 0;
         roundCount++;
@@ -125,9 +123,9 @@ public class TicTacToeController implements Initializable{
             boolean isHumanStart = Math.random() < 0.5;
 
             if (isHumanStart) {
-                roundLabel.setText("Round: " + roundCount + " (Human starts)");
+                roundLabel.setText("Round: " + roundCount);
             } else {
-                roundLabel.setText("Round: " + roundCount + " (Computer starts)");
+                roundLabel.setText("Round: " + roundCount);
 
                 Move move = MiniMax.findBestMove(board);
                 board[move.row][move.col] = 'o';
@@ -155,47 +153,6 @@ public class TicTacToeController implements Initializable{
         }
     }
 
-    //old
-
-//    public void playAgain(ActionEvent event) {
-//        i = 0;
-//        roundCount++;
-//
-//        //whoStarts();
-//
-//        for (int i = 0; i < 3; i++)
-//            for (int j = 0; j < 3; j++)
-//                board[i][j] = ' ';
-//
-//        for (int i = 0; i < pane.getChildren().size(); i++) {
-//            ((Button) (pane.getChildren().get(i))).setText("");
-//        }
-//
-//        pane.setDisable(false);
-//
-//        if (roundCount <= 6) {
-//            roundLabel.setText("Round: " + roundCount);
-//        }
-//
-//        if (roundCount >= 6) {
-//            String winner = displayFinalResults();
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//            alert.setContentText(winner);
-//            alert.show();
-//            pane.setDisable(true);
-//
-//            roundCount = 0;
-//            humanWins = 0;
-//            computerWins = 0;
-//            tie =0;
-//            playerXLabel.setText("0");
-//            playerOLabel.setText("0");
-//            tieLabel.setText("0");
-//            roundLabel.setText("Round: 1");
-//        }
-//
-//    }
-//
     private String displayFinalResults() {
         String winner = "";
 
@@ -203,14 +160,33 @@ public class TicTacToeController implements Initializable{
 
         if (maxWins == humanWins) {
             winner = "Human Wins: " + humanWins + "\nComputer Wins: " + computerWins;
-        } else if (maxWins == tie) {
-            winner = "It's a Tie! \nHuman Wins: " + humanWins + "\nComputer Wins: " + computerWins+ "\nTie: " + tie;
+        } else if ( (humanWins == computerWins) || (computerWins == 0 && humanWins ==0 && tie == 5)) {
+            winner = "It's a Tie! \nHuman Wins: " + computerWins + "\nComputer Wins: " + humanWins+ "\nTie: " + tie;
         } else {
             winner = "The Computer is The Winner! \nComputer Wins: " + computerWins + "\nHuman Wins: " + humanWins + "\nTie: " + tie;
         }
         return winner;
     }
 
+    public boolean checkfullboard(char [][]board) {
+        int flag=0;
+        for(int i=0;i<3;i++) {
+            for(int j=0;j<3;j++) {
+                if(board [i][j]==' ') {
+                    flag=1;
+                    break;
+                }
+
+            }
+            if(flag==1) {
+                break;
+            }
+        }
+        if(flag==1) {
+            return false;
+        }
+        return true;
+    }
     private void action(int x, int y) {
         int flag = 0;
         Button btn = chooseTheButton(x, y);
@@ -230,10 +206,19 @@ public class TicTacToeController implements Initializable{
                 }
                 return;
             }
+            else if(result== ' ' && checkfullboard(board)){
+                flag = 0;
+                updateResultLabel(result);
+                pane.setDisable(true);
+
+                if (roundCount < 6) {
+                    roundLabel.setText("Round: " + (roundCount ));
+                }
+            }
 
             if (i > 8) {
                 if (flag == 0) {
-                    updateResultLabel('T');
+//                    updateResultLabel('T');
                     pane.setDisable(true);
 
                     if (roundCount < 6) {
@@ -250,8 +235,19 @@ public class TicTacToeController implements Initializable{
             i++;
 
             result = checkWinner();
+
             if (result != ' ') {
                 flag = 1;
+                updateResultLabel(result);
+                pane.setDisable(true);
+
+                if (roundCount < 6) {
+                    roundLabel.setText("Round: " + (roundCount ));
+                }
+                return;
+            }
+            else if(result== ' ' && checkfullboard(board)) {
+                flag = 0;
                 updateResultLabel(result);
                 pane.setDisable(true);
 
@@ -274,6 +270,10 @@ public class TicTacToeController implements Initializable{
                 computerWins++;
                 break;
             case 'T':
+                tieLabel.setText(String.valueOf(Integer.parseInt(tieLabel.getText()) + 1));
+                tie++;
+                break;
+            case ' ':
                 tieLabel.setText(String.valueOf(Integer.parseInt(tieLabel.getText()) + 1));
                 tie++;
                 break;
@@ -328,72 +328,3 @@ public class TicTacToeController implements Initializable{
         return ' ';
     }
 }
-
-
-//    public void playAgain1(ActionEvent event) {
-//        i = 0;
-//        roundCount++;
-//
-//        for (int i = 0; i < 3; i++)
-//            for (int j = 0; j < 3; j++)
-//                board[i][j] = ' ';
-//
-//        for (int i = 0; i < pane.getChildren().size(); i++) {
-//            ((Button) (pane.getChildren().get(i))).setText("");
-//        }
-//
-//        pane.setDisable(false);
-//
-//        if (roundCount <= 6) {
-//            boolean isHumanStart = Math.random() < 0.5;
-//
-//            if (isHumanStart) {
-//                roundLabel.setText("Round: " + roundCount + " (Human starts)");
-//            } else {
-//                roundLabel.setText("Round: " + roundCount + " (Computer starts)");
-//
-//                Move move = MiniMax.findBestMove(board);
-//                board[move.row][move.col] = 'o';
-//                Button btn = chooseTheButton(move.col, move.row);
-//                btn.setText("o");
-//                i++;
-//
-//                char result = checkWinner();
-//                if (result != ' ') {
-//                    updateResultLabel(result);
-//                    pane.setDisable(true);
-//
-//                    if (roundCount < 6) {
-//                        roundLabel.setText("Round: " + roundCount);
-//                    }
-//                    return;
-//                }
-//            }
-//
-//            if (i > 8) {
-//                updateResultLabel('T');
-//                pane.setDisable(true);
-//
-//                if (roundCount < 6) {
-//                    roundLabel.setText("Round: " + roundCount);
-//                }
-//                return;
-//            }
-//        }
-//
-//        if (roundCount >= 6) {
-//            String winner = displayFinalResults();
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//            alert.setContentText(winner);
-//            alert.show();
-//
-//            roundCount = 0;
-//            humanWins = 0;
-//            computerWins = 0;
-//            tie = 0;
-//            playerXLabel.setText("0");
-//            playerOLabel.setText("0");
-//            tieLabel.setText("0");
-//            roundLabel.setText("Round: 1");
-//        }
-//    }
