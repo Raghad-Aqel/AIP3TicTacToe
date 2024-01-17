@@ -2,57 +2,11 @@ package com.example.aip3tictactoe;
 
 public class MiniMax {
 
-    final static char computer = 'o';
-    final static char human = 'x';
+    final static char ai = 'o';
+    final static char person = 'x';
 
-    static Boolean hasMoves(char board[][]) {
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (board[i][j] == ' ')
-                    return true;
-        return false;
-    }
-
-    private static int[] mapping(int n) {
-        int x = n%3;
-        int y = n/3;
-
-        int[] arr = {x, y};
-        return arr;
-    }
-
-//    0 1 2
-//    3 4 5
-//    6 7 8
-
-
-    static int evaluation(char board[][]) {
-        int[][] win = {
-                {0, 1, 2},
-                {3, 4, 5},
-                {6, 7, 8},
-                {0, 3, 6},
-                {1, 4, 7},
-                {2, 5, 8},
-                {0, 4, 8},
-                {2, 4, 6}
-        };
-
-        for (int i = 0; i < win.length; i++) {
-            int[] n1 = mapping(win[i][0]);
-            int[] n2 = mapping(win[i][1]);
-            int[] n3 = mapping(win[i][2]);
-            if (board[n1[0]][n1[1]] != ' ' && board[n1[0]][n1[1]] == board[n2[0]][n2[1]] && board[n2[0]][n2[1]] == board[n3[0]][n3[1]]) {
-                if (board[n1[0]][n1[1]] == computer) return 10;
-                else return -10;
-            }
-        }
-
-        return 0;
-    }
-
-    static int minimax(char board[][], Boolean isMax) {
-        int score = evaluation(board);
+    static int minimax(char board[][], Boolean isMaximizing) {
+        int score = checkWinner(board);
 
         if (score != 0)
             return score;
@@ -60,41 +14,68 @@ public class MiniMax {
         if (hasMoves(board) == false)
             return 0;
 
-        if (isMax) {
-            int best = -Integer.MAX_VALUE;
+        if (isMaximizing) {
+            int bestScore = -Integer.MAX_VALUE;
 
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
 
-                    if (board[i][j] == ' ') {
-                        board[i][j] = computer;
-
-                        best = Math.max(best, minimax(board, false));
-
-                        board[i][j] = ' ';
+                    if (board[row][col] == ' ') {
+                        board[row][col] = ai;
+                        bestScore = Math.max(bestScore, minimax(board, false));
+                        board[row][col] = ' ';
                     }
                 }
             }
-            return best;
+            return bestScore;
         }
 
         else {
-            int best = Integer.MAX_VALUE;
+            int bestScore = Integer.MAX_VALUE;
 
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
 
-                    if (board[i][j] == ' ') {
-                        board[i][j] = human;
-
-                        best = Math.min(best, minimax(board, true));
-
-                        board[i][j] = ' ';
+                    if (board[row][col] == ' ') {
+                        board[row][col] = person;
+                        bestScore = Math.min(bestScore, minimax(board, true));
+                        board[row][col] = ' ';
                     }
                 }
             }
-            return best;
+            return bestScore;
         }
+    }
+    static Boolean hasMoves(char board[][]) {
+        for (int row = 0; row < 3; row++)
+            for (int col = 0; col < 3; col++)
+                if (board[row][col] == ' ')
+                    return true;
+        return false;
+    }
+    private static int[] mapping(int n) {
+        int[] arr = {n%3,  n/3};
+        return arr;
+    }
+
+    static int checkWinner(char board[][]) {
+        int[][] winningCombinations = {
+                {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+                {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+                {0, 4, 8}, {2, 4, 6}
+        };
+
+        for (int i = 0; i < winningCombinations.length; i++) {
+            int[] position1 = mapping(winningCombinations[i][0]);
+            int[] position2 = mapping(winningCombinations[i][1]);
+            int[] position3 = mapping(winningCombinations[i][2]);
+            if (board[position1[0]][position1[1]] != ' ' && board[position1[0]][position1[1]] == board[position2[0]][position2[1]] && board[position2[0]][position2[1]] == board[position3[0]][position3[1]]) {
+                if (board[position1[0]][position1[1]] == ai) return 10;
+                else return -10;
+            }
+        }
+
+        return 0;
     }
 
     public static Move findBestMove(char board[][]) {
@@ -103,20 +84,20 @@ public class MiniMax {
         bestMove.row = -1;
         bestMove.col = -1;
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
 
-                if (board[i][j] == ' ') {
+                if (board[row][col] == ' ') {
 
-                    board[i][j] = computer;
+                    board[row][col] = ai;
 
                     int moveVal = minimax(board, false);
 
-                    board[i][j] = ' ';
+                    board[row][col] = ' ';
 
                     if (moveVal > bestVal) {
-                        bestMove.row = i;
-                        bestMove.col = j;
+                        bestMove.row = row;
+                        bestMove.col = col;
                         bestVal = moveVal;
                     }
                 }
