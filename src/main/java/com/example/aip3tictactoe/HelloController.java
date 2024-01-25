@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 public class HelloController {
 
     @FXML
-    void playWithUnbeatableComputer(ActionEvent event) throws IOException {
+    void playWithComputer(ActionEvent event) throws IOException {
         showStage("TicTacToe.fxml");
     }
     private void showStage(String fileName) throws IOException {
